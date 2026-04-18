@@ -8,6 +8,7 @@ import type { IconType } from "react-icons";
 import { skills, softSkills } from "../_lib/data";
 import { techIcons } from "../_lib/techIcons";
 import { useRole } from "./RoleContext";
+import { useLang } from "./LangContext";
 
 const softSkillIcons: Record<string, IconType> = {
   HiOutlineShieldCheck,
@@ -34,6 +35,7 @@ const skillCategories = [
 
 export default function Skills() {
   const { activeRole } = useRole();
+  const { lang } = useLang();
   const highlighted = roleHighlights[activeRole];
 
   return (
@@ -84,11 +86,11 @@ export default function Skills() {
               const Icon = softSkillIcons[s.icon];
               return (
                 <span
-                  key={s.label}
+                  key={s.label.en}
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-[#F0F0EC] text-[#52525B] rounded-full"
                 >
                   {Icon && <Icon size={12} />}
-                  {s.label}
+                  {s.label[lang]}
                 </span>
               );
             })}
